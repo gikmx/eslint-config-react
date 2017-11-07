@@ -41,15 +41,15 @@ EsLint.rules = Object.assign(
         // Common
         // ------------------------------------------------------------------------- Error
         'no-unused-vars': ['error', { // Disallow declaring something is not used.
-            varsIgnorePattern: 'Snabbdom', // This is used by wabpack for JSX
+            varsIgnorePattern: 'React', // This is used by wabpack for JSX
         }],
-        'jsx/uses-factory': ['error', { pragma: 'Snabbdom' }],
+        'jsx/uses-factory': ['error', { pragma: 'React' }],
         'jsx/mark-used-vars': 'error',
         'jsx/no-undef': 'error',
         // ----------------------------------------------------------------------- Warning
         'spaced-comment': ['warn', 'always', { markers: ['/'] }], // for ifdef
         // ---------------------------------------------------------------------- Disabled
-        'jsx/factory-in-scope': ['off', { pragma: 'Snabbdom' }],
+        'jsx/factory-in-scope': ['off', { pragma: 'React' }],
     },
     NODE_ENV === 'production' ? {
         // Production only

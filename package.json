@@ -1,7 +1,7 @@
 {
-    "name": "@gik/eslint-config-cycle",
-    "version": "0.0.3",
-    "description": "GIK's cycle.js approach to EcmaScript",
+    "name": "@gik/eslint-config-react",
+    "version": "0.0.1",
+    "description": "ESlint rules for React apps.",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/eslint",
     "contributors": [
@@ -13,20 +13,18 @@
         "eslint",
         "es2017",
         "babel-eslint",
-        "cycle",
-        "cycle.js"
+        "react",
+        "react.js"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/gikmx/eslint.git"
+        "url": "https://github.com/gikmx/eslint-config-react"
     },
     "bugs": {
-        "url": "https://github.com/gikmx/eslint/issues"
+        "url": "https://github.com/gikmx/eslint-config-react/issues"
     },
     "main": "rules/index.js",
     "scripts": {
-        "editorconfig": "editorconfig-tools check rules/*",
-        "prelint": "npm run -s editorconfig",
         "lint": "eslint rules/*"
     },
     "dependencies": {
@@ -34,7 +32,6 @@
         "eslint-plugin-jsx": "^0.0.2"
     },
     "devDependencies": {
-        "editorconfig-tools": "^0.1.1",
-        "eslint": "^4.7.2"
+        "eslint": "^4.10.0"
     }
 }
