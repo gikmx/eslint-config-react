@@ -1,0 +1,40 @@
+{
+    "name": "@gik/eslint-config-cycle",
+    "version": "0.0.3",
+    "description": "GIK's cycle.js approach to EcmaScript",
+    "license": "MIT",
+    "homepage": "https://github.com/gikmx/eslint",
+    "contributors": [
+        "Héctor Menéndez <hector@gik.mx> (https://hectormenendez.com)"
+    ],
+    "keywords": [
+        "style guide",
+        "lint",
+        "eslint",
+        "es2017",
+        "babel-eslint",
+        "cycle",
+        "cycle.js"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gikmx/eslint.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gikmx/eslint/issues"
+    },
+    "main": "rules/index.js",
+    "scripts": {
+        "editorconfig": "editorconfig-tools check rules/*",
+        "prelint": "npm run -s editorconfig",
+        "lint": "eslint rules/*"
+    },
+    "dependencies": {
+        "@gik/eslint-config": "0.0.4",
+        "eslint-plugin-jsx": "^0.0.2"
+    },
+    "devDependencies": {
+        "editorconfig-tools": "^0.1.1",
+        "eslint": "^4.7.2"
+    }
+}
