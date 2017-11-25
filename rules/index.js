@@ -21,6 +21,19 @@ EsLint.parserOptions = {
     },
 };
 
+// Importer
+EsLint.settings = {
+    'import/resolver': {
+        webpack: {
+            config: {
+                resolve: {
+                    modules: ['src', 'node_modules'],
+                },
+            },
+        },
+    },
+};
+
 // Allow these globals to be used
 EsLint.globals = Object.assign(
     {
