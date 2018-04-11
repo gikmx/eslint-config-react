@@ -11,7 +11,7 @@ EsLint.env = {
 };
 
 // Add eslint-plugins-jsx package for JSX validation
-EsLint.plugins = ['jsx'];
+EsLint.plugins = ['jsx', 'plugin:react/recommended'];
 
 // Specify parser behaviour
 EsLint.parserOptions = {
