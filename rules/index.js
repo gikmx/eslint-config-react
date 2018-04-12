@@ -2,7 +2,7 @@ const { NODE_ENV } = process.env; // eslint-disable-line no-undef
 const EsLint = module.exports = {}; // eslint-disable-line no-multi-assign
 
 // Use base configuration
-EsLint.extends = '@gik';
+EsLint.extends = ['plugin:react/recommended', '@gik'];
 
 // This is code for a browser.
 EsLint.env = {
@@ -11,7 +11,7 @@ EsLint.env = {
 };
 
 // Add eslint-plugins-jsx package for JSX validation
-EsLint.plugins = ['jsx', 'plugin:react/recommended'];
+EsLint.plugins = ['jsx'];
 
 // Specify parser behaviour
 EsLint.parserOptions = {
@@ -30,6 +30,10 @@ EsLint.settings = {
                     modules: ['src', 'node_modules'],
                 },
             },
+        },
+        'babel-plugin-root-import': {
+            rootPathPrefix: '~',
+            rootPathSuffix: 'src',
         },
     },
 };
