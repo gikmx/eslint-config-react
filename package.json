@@ -1,6 +1,6 @@
 {
     "name": "@gik/eslint-config-react",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "ESlint rules for React apps.",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/eslint",
@@ -11,7 +11,7 @@
         "style guide",
         "lint",
         "eslint",
-        "es2017",
+        "es2018",
         "babel-eslint",
         "react",
         "react.js"

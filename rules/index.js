@@ -2,7 +2,9 @@ const { NODE_ENV } = process.env; // eslint-disable-line no-undef
 const EsLint = module.exports = {}; // eslint-disable-line no-multi-assign
 
 // Use base configuration
-EsLint.extends = ['plugin:react/recommended', '@gik'];
+EsLint.extends = [
+    '@gik',
+];
 
 // This is code for a browser.
 EsLint.env = {
@@ -15,6 +17,7 @@ EsLint.plugins = ['jsx'];
 
 // Specify parser behaviour
 EsLint.parserOptions = {
+    ecmaVersion: 2018,
     ecmaFeatures: {
         // Don't freak out when using JSX
         jsx: true,
@@ -23,7 +26,14 @@ EsLint.parserOptions = {
 
 // Importer
 EsLint.settings = {
+    react: {
+        pragma: 'React',
+        version: '16.5',
+    },
     'import/resolver': {
+        node: {
+            extensions: ['.js', '.jsx'],
+        },
         webpack: {
             config: {
                 resolve: {
