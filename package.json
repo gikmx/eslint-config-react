@@ -1,6 +1,6 @@
 {
     "name": "@gik/eslint-config-react",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "ESlint rules for React apps.",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/eslint",
@@ -25,16 +25,21 @@
     },
     "main": "rules/index.js",
     "scripts": {
-        "lint": "eslint rules/*"
+        "editorconfig": "editorconfig-tools check rules/*",
+        "prelint": "npm run -s editorconfig",
+        "lint": "eslint rules/*",
+        "prepublishOnly": "npm run -s lint"
+    },
+    "peerDependencies": {
+        "eslint": "^5.6.1"
     },
     "dependencies": {
-        "@gik/eslint-config": "0.0.6",
+        "@gik/eslint-config": "0.0.8",
         "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
-        "eslint-import-resolver-webpack": "^0.9.0",
-        "eslint-plugin-jsx": "^0.0.2",
-        "eslint-plugin-react": "^7.7.0"
+        "eslint-import-resolver-webpack": "^0.10.1"
     },
     "devDependencies": {
-        "eslint": "^4.19.1"
+        "editorconfig-tools": "^0.1.1",
+        "eslint": "^5.6.1"
     }
 }

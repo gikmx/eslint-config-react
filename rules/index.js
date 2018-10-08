@@ -12,8 +12,10 @@ EsLint.env = {
     node: false,
 };
 
-// Add eslint-plugins-jsx package for JSX validation
-EsLint.plugins = ['jsx'];
+EsLint.plugins = [
+    'react', // react validations (included in @gik/eslint-config)
+    'jsx-a11y', // JSX validations (included in @gik/eslint-config)
+];
 
 // Specify parser behaviour
 EsLint.parserOptions = {
@@ -70,13 +72,9 @@ EsLint.rules = Object.assign(
         'no-unused-vars': ['error', { // Disallow declaring something is not used.
             varsIgnorePattern: 'React', // This is used by wabpack for JSX
         }],
-        'jsx/uses-factory': ['error', { pragma: 'React' }],
-        'jsx/mark-used-vars': 'error',
-        'jsx/no-undef': 'error',
         // ----------------------------------------------------------------------- Warning
         'spaced-comment': ['warn', 'always', { markers: ['/'] }], // for ifdef
         // ---------------------------------------------------------------------- Disabled
-        'jsx/factory-in-scope': ['off', { pragma: 'React' }],
     },
     NODE_ENV === 'production' ? {
         // Production only
@@ -86,6 +84,6 @@ EsLint.rules = Object.assign(
         // Development only
         'no-console': 'warn',
         'no-debugger': 'warn',
-        'global-require': 'off', // Used by hot-module-reloading
+        'global-require': 'warn', // Used by hot-module-reloading
     },
 );
