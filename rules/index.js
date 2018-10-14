@@ -1,56 +1,51 @@
 const { NODE_ENV } = process.env; // eslint-disable-line no-undef
-const EsLint = module.exports = {}; // eslint-disable-line no-multi-assign
 
-// Use base configuration
-EsLint.extends = [
-    '@gik',
+const extensions = [
+    '.js',
+    '.jsx',
+    '.json',
+    '.mjs',
 ];
 
-// This is code for a browser.
-EsLint.env = {
-    browser: true,
-    node: false,
-};
+const EsLint = module.exports = { // eslint-disable-line no-multi-assign
 
-EsLint.plugins = [
-    'react', // react validations (included in @gik/eslint-config)
-    'jsx-a11y', // JSX validations (included in @gik/eslint-config)
-];
+    // Baseguide is Airbnb's (with react extensions) and @gik's own base overwriting it.
+    extends: [
+        '@gik',
+        'airbnb/rules/react',
+        'airbnb/rules/react-a11y',
+    ],
 
-// Specify parser behaviour
-EsLint.parserOptions = {
-    ecmaVersion: 2018,
-    ecmaFeatures: {
-        // Don't freak out when using JSX
-        jsx: true,
+    // This is code for a browser.
+    env: {
+        browser: true,
+        node: false,
     },
-};
 
-// Importer
-EsLint.settings = {
-    react: {
-        pragma: 'React',
-        version: '16.5',
-    },
-    'import/resolver': {
-        node: {
-            extensions: ['.js', '.jsx'],
+    settings: {
+        react: {
+            pragma: 'React',
+            version: '16.5', // bump Airbnb's version
         },
-        webpack: {
-            config: {
-                resolve: {
-                    modules: ['src', 'node_modules'],
+        'import/extensions': extensions,
+        'import/resolver': {
+            webpack: {
+                config: {
+                    resolve: {
+                        modules: ['src', 'node_modules'],
+                    },
                 },
             },
-        },
-        'babel-plugin-root-import': {
-            rootPathPrefix: '~',
-            rootPathSuffix: 'src',
+            'babel-plugin-root-import': {
+                extensions, // added this capbility in own fork, needed for jsx resolves
+                rootPathPrefix: '~',
+                rootPathSuffix: 'src',
+            },
         },
     },
 };
 
-// Allow these globals to be used
+// Allow these globals to be used (only losers use globals on production)
 EsLint.globals = Object.assign(
     {
         // Common
@@ -80,6 +75,7 @@ EsLint.rules = Object.assign(
         // Production only
         'no-console': 'error', // having console on production would be a fail.
         'no-debugger': 'error', // error doesn't cut it. This would be apocalyptical.
+        'global-require': 'error', // if you're doing globals, you're failing in life.
     } : {
         // Development only
         'no-console': 'warn',
