@@ -1,3 +1,7 @@
+/* globals process */
+
+const PATH = require('path');
+
 const { NODE_ENV } = process.env; // eslint-disable-line no-undef
 
 const extensions = [
@@ -36,10 +40,11 @@ const EsLint = module.exports = { // eslint-disable-line no-multi-assign
                     },
                 },
             },
-            'babel-plugin-root-import': {
-                extensions, // added this capbility in own fork, needed for jsx resolves
-                rootPathPrefix: '~',
-                rootPathSuffix: 'src',
+            alias: {
+                map: [
+                    ['~', PATH.resolve(process.cwd(), 'src')]
+                ],
+                extensions,
             },
         },
     },

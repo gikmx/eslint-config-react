@@ -1,6 +1,6 @@
 {
     "name": "@gik/eslint-config-react",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "ESlint rules for React apps.",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/eslint",
@@ -36,7 +36,7 @@
     "dependencies": {
         "@gik/eslint-config": "0.0.9",
         "eslint-config-airbnb": "^17.1.0",
-        "eslint-import-resolver-babel-plugin-root-import": "github:hectormenendez/eslint-import-resolver-babel-plugin-root-import",
+        "eslint-import-resolver-alias": "^1.1.1",
         "eslint-import-resolver-webpack": "^0.10.1",
         "eslint-plugin-jsx-a11y": "^6.1.2",
         "eslint-plugin-react": "^7.11.1"
