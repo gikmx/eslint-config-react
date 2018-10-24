@@ -1,6 +1,7 @@
 /* globals process */
 
 const PATH = require('path');
+
 const { NODE_ENV } = process.env;
 
 const extensions = [
@@ -56,7 +57,7 @@ const EsLint = module.exports = { // eslint-disable-line no-multi-assign
             },
             alias: {
                 map: [
-                    ['~', PATH.resolve(process.cwd(), 'src')]
+                    ['~', PATH.resolve(process.cwd(), 'src')],
                 ],
                 extensions,
             },
@@ -119,8 +120,8 @@ EsLint.rules = Object.assign(
                 'render',
                 '/^on.+$/',
                 '/^handle.+$/',
-                'everything-else'
-            ]
+                'everything-else',
+            ],
         }],
         // Maximum line-width
         'max-len': ['error', {
