@@ -1,8 +1,7 @@
 /* globals process */
 
 const PATH = require('path');
-
-const { NODE_ENV } = process.env; // eslint-disable-line no-undef
+const { NODE_ENV } = process.env;
 
 const extensions = [
     '.js',
@@ -12,6 +11,7 @@ const extensions = [
 ];
 
 const EsLint = module.exports = { // eslint-disable-line no-multi-assign
+    root: true,
 
     // Baseguide is Airbnb's (with react extensions) and @gik's own base overwriting it.
     extends: [
@@ -20,10 +20,24 @@ const EsLint = module.exports = { // eslint-disable-line no-multi-assign
         'airbnb/rules/react-a11y',
     ],
 
-    // This is code for a browser.
+    // Declare globals for testing and for browser.
     env: {
         browser: true,
+        es6: true,
+        jest: true,
+        commonjs: false,
         node: false,
+    },
+
+    // parse using babel, to get newest features.
+    parser: 'babel-eslint',
+    parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true,
+            generators: false,
+        },
     },
 
     settings: {
@@ -72,9 +86,73 @@ EsLint.rules = Object.assign(
         'no-unused-vars': ['error', { // Disallow declaring something is not used.
             varsIgnorePattern: 'React', // This is used by wabpack for JSX
         }],
+        // Use 4 spaces instead of AirBnb"s 2.
+        'react/jsx-indent': ['error', 4],
+        'react/jsx-indent-props': ['error', 4],
+        indent: ['error', 4, {
+            SwitchCase: 1,
+            VariableDeclarator: 1,
+            outerIIFEBody: 1,
+            ArrayExpression: 1,
+            ObjectExpression: 1,
+            ImportDeclaration: 1,
+            flatTernaryExpressions: false,
+            ignoredNodes: ['JSXElement', 'JSXElement *'],
+            FunctionDeclaration: {
+                parameters: 1,
+                body: 1,
+            },
+            FunctionExpression: {
+                parameters: 1,
+                body: 1,
+            },
+            CallExpression: {
+                arguments: 1,
+            },
+        }],
+        'arrow-parens': ['error', 'always'], // Always require parens on arrow functions
+        // Determine the order of elements inside a React class
+        'react/sort-comp': ['error', {
+            order: [
+                'static-methods',
+                'lifecycle',
+                'render',
+                '/^on.+$/',
+                '/^handle.+$/',
+                'everything-else'
+            ]
+        }],
+        // Maximum line-width
+        'max-len': ['error', {
+            code: 90,
+            ignoreComments: false,
+            ignoreTrailingComments: false,
+            ignoreUrls: false,
+            ignoreStrings: false,
+            ignoreTemplateLiterals: false,
+            ignoreRegExpLiterals: false,
+        }],
+        // never force the use of newlines on properties, just be consistent,
+        'object-curly-newline': ['error', {
+            ObjectExpression: {
+                minProperties: undefined, multiline: true, consistent: true,
+            },
+            ObjectPattern: {
+                minProperties: undefined, multiline: true, consistent: true,
+            },
+            ImportDeclaration: {
+                minProperties: undefined, multiline: true, consistent: true,
+            },
+            ExportDeclaration: {
+                minProperties: undefined, multiline: true, consistent: true,
+            },
+        }],
+
         // ----------------------------------------------------------------------- Warning
         'spaced-comment': ['warn', 'always', { markers: ['/'] }], // for ifdef
         // ---------------------------------------------------------------------- Disabled
+        'react/jsx-wrap-multilines': 0, // No need to wrap JSX in parens
+        'react/jsx-closing-tag-location': 0, // when not using parent for JSX this is req.
     },
     NODE_ENV === 'production' ? {
         // Production only
